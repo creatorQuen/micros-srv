@@ -1,0 +1,17 @@
+docker compose up -d
+
+docker compose down
+
+make stop
+
+make up_build
+
+make down
+
+make up_build
+
+make start
+
+make stop
+
+make down
