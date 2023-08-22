@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"
 )
@@ -18,6 +19,10 @@ func (cnf *Config) routes() http.Handler {
 		AllowCredentials: true,
 		MaxAge:           300,
 	}))
+
+	mux.Use(middleware.Heartbeat("/ping"))
+
+	mux.Post("/authenticate", cnf.Authenticate)
 
 	return mux
 }
